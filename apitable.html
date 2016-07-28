@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Jquery by paulbradshaw</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">jQuery</h1>
+      <h2 class="project-tagline">Table from API</h2>
+      
+    </section>
+
+    <section class="main-content">
+    <script>
+    $(document).ready(function() {
+  console.log('hello');
+  //Start get - URI and callback function
+  // URI needs to start with http if you are on http - but my browser defaults to https
+  // URI can be changed to different SQL query 
+  $.get("https://premium.scraperwiki.com/basau3i/6f9e24a1d6034a1/sql/?q=select%20*%0Afrom%20swdata%20where%20pdflink%20%3D%3D%20url", function(decisions) {
+    // Define what the function does
+    //'decisions' is made into Jquery object, .each loops through, performs new function
+    // Start 'for each' loop. Run function naming variable 'decision' and index as 'index'
+    $(decisions).each(function(index, decision) {
+      //Use console log to show each 
+      console.log(decision);
+      $('.decisions').append($('<tr class="row"><td><a href="'+decision.fullurl+'">'+decision.url+'</a></td><td>'+decision.refno+'</td>'+'<td>'+decision.status+'</td>'+'<td>'+decision.keywords+'</td>'+'<td>'+decision.nohtml+'</td></tr>'))
+    });
+  }); //Close get
+
+}); //Close document ready
+    </script>
+    
+<table class="decisions" border="1">
+  <tr>
+    <th>URL</th>
+    <th>Ref</th>
+    <th>Status</th>
+    <th>Keywords</th>
+        <th>HTML</th>
+  </tr>
+</table>
+
+    </section>
+
+  
+  </body>
+</html>
