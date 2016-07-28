@@ -23,6 +23,7 @@
 // adapted from https://api.jquery.com/submit/
 // this only runs when the form is submitted
 $("form").submit(function(event) {
+  event.preventDefault();
   // creates variable 'wotsit' and looks in the first input box and grabs the value using .val() method
   var wotsit = $("input:first").val()
   console.log(wotsit);
@@ -36,7 +37,6 @@ $("form").submit(function(event) {
       $('.decisions').append($('<tr class="row"><td><a href="'+decision.fullurl+'">'+decision.url+'</a></td><td>'+decision.refno+'</td>'+'<td>'+decision.status+'</td>'+'<td>'+decision.keywords+'</td>'+'<td>'+decision.nohtml+'</td></tr>'))
     });
   }); //Close get
-event.preventDefault();
 }); //Close document ready
     </script>
     
